@@ -1,0 +1,26 @@
+<Configuration status="INFO">
+
+    <Appenders>
+        <Console name="toConsole" target="SYSTEM_OUT">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n</Pattern>
+            </PatternLayout>
+        </Console>
+
+        <RollingFile name="toFile" fileName="@../../logs/log-${date:yyyy-MM-dd}.log" filePattern="logs/app-%d{MM-dd-yyyy}.log.gz"
+                     ignoreExceptions="false">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n</Pattern>
+            </PatternLayout>
+            <timeBasedTriggeringPolicy />
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Root level="debug">
+            <AppenderRef ref="toConsole"/>
+            <AppenderRef ref="toFile"/>
+        </Root>
+    </Loggers>
+
+</Configuration>
