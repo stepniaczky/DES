@@ -11,7 +11,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FxmlStageSetup.buildStage(stage, "/fxml/Choice.fxml",
+        FxmlStageSetup.buildStage(stage, "/fxml/Scene.fxml",
                 bundle.getString("game_title"), bundle);
     }
 

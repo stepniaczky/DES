@@ -9,14 +9,14 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
+
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ChoiceController {
+public class Controller {
 
     public Button buttonStartGame;
     public Button buttonConfirmLevel;
@@ -45,7 +45,7 @@ public class ChoiceController {
     }
 
     public static void setLevel(String level) {
-        ChoiceController.level = level;
+        Controller.level = level;
     }
 
     public static SudokuBoard getSudokuBoardFromFile() {
@@ -164,13 +164,13 @@ public class ChoiceController {
 
     public void onActionButtonLangPl() throws IOException {
         Locale.setDefault(new Locale("pl","PL"));
-        FxmlStageSetup.buildStage("/fxml/Choice.fxml", bundle);
+        FxmlStageSetup.buildStage("/fxml/Scene.fxml", bundle);
         logger.info(bundle.getString("log_lang_pl"));
     }
 
     public void onActionButtonLangEn() throws IOException {
         Locale.setDefault(new Locale("en","EN"));
-        FxmlStageSetup.buildStage("/fxml/Choice.fxml", bundle);
+        FxmlStageSetup.buildStage("/fxml/Scene.fxml", bundle);
         logger.info(bundle.getString("log_lang_en"));
     }
 
