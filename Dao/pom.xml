@@ -7,26 +7,6 @@
             <version>2.0</version>
             <scope>compile</scope>
         </dependency>
-        <dependency>
-            <groupId>org.apache.derby</groupId>
-            <artifactId>derby</artifactId>
-            <version>10.15.2.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.derby</groupId>
-            <artifactId>derbyclient</artifactId>
-            <version>10.15.2.0</version>
-        </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.apache.derby:derby:jar</groupId>-->
-<!--            <artifactId>derby</artifactId>-->
-<!--            <version>10.15.2.0</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.apache.derby</groupId>-->
-<!--            <artifactId>derbyclient</artifactId>-->
-<!--            <version>10.15.2.0</version>-->
-<!--        </dependency>-->
     </dependencies>
     <parent>
         <groupId>pl.comp</groupId>

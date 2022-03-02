@@ -2,14 +2,11 @@ package pl.first.firstjava;
 
 import org.junit.jupiter.api.Test;
 
-
-import java.sql.SQLException;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class FileSudokuBoardDaoTest {
     @Test
-    public void overallTest() throws SQLException {
+    public void overallTest() {
         SudokuBoardDaoFactory dao = new SudokuBoardDaoFactory();
         SudokuBoard b1 = new SudokuBoard(9);
         SudokuBoard b2;
@@ -22,7 +19,7 @@ public class FileSudokuBoardDaoTest {
     }
 
     @Test
-    public void readException() throws LocalizedRuntimeException, SQLException {
+    public void readException() throws LocalizedRuntimeException {
         int nmbr = 9;
         SudokuBoardDaoFactory dao = new SudokuBoardDaoFactory();
         Dao<SudokuBoard> file;
@@ -31,7 +28,7 @@ public class FileSudokuBoardDaoTest {
     }
 
     @Test
-    public void writeException() throws RuntimeException, SQLException {
+    public void writeException() throws RuntimeException {
         int nmbr = 9;
         SudokuBoardDaoFactory dao = new SudokuBoardDaoFactory();
         SudokuBoard b1 = new SudokuBoard(nmbr);
