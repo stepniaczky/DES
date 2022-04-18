@@ -1,28 +1,23 @@
 package des;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 
 
-
-public class FileSudokuBoardDao implements Dao<SudokuBoard> {
+public class FileDao implements Dao<SudokuBoard> {
 
     private final String filename;
 
-    public FileSudokuBoardDao(String filename) {
+    public FileDao(String filename) {
         this.filename = filename;
     }
 
     @Override
-    public SudokuBoard read() {
-        SudokuBoard obj = null;
+    public SudokuBoard read() throws IOException {
+        SudokuBoard obj;
         try (FileInputStream fis = new FileInputStream(filename);
              ObjectInputStream ois = new ObjectInputStream(fis)) {
              obj = (SudokuBoard) ois.readObject();
-        } catch (ClassNotFoundException | IOException e) {
+        } catch (ClassNotFoundException | FileNotFoundException e) {
             throw new RuntimeException(e);
         }
         return obj;

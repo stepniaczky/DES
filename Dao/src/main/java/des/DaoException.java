@@ -1,6 +1,6 @@
 package des;
 
-public class DaoException extends LocalizedRuntimeException {
+public class DaoException extends RuntimeException {
     public DaoException(String messageKey) {
         super(messageKey);
     }

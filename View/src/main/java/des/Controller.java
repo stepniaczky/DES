@@ -1,6 +1,7 @@
 package des;
 
 import java.io.File;
+import java.io.IOException;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -33,18 +34,18 @@ public class Controller {
 
     }
 
-    public void loadKey () {
+    public void loadKey () throws IOException {
         loadFile("Wczytaj klucz z pliku:");
     }
 
     public void saveKey () {
         saveFile("Zapisz klucz do pliku:");
     }
-    public void openExplicitFile () {
+    public void openExplicitFile () throws IOException {
         loadFile("Otwórz plik zawierający tekst jawny:");
     }
 
-    public void openEncryptedFile () {
+    public void openEncryptedFile () throws IOException {
         loadFile("Otwórz plik zawierający szyfrogram:");
     }
 
@@ -86,14 +87,13 @@ public class Controller {
 
         if (userSelection == JFileChooser.APPROVE_OPTION) {
             File fileToSave = fileChooser.getSelectedFile();
-            SudokuBoardDaoFactory dao = new SudokuBoardDaoFactory();
+            DaoFactory dao = new DaoFactory();
             Dao<SudokuBoard> file;
             file = dao.getFileDao(fileToSave.getAbsolutePath());
 //                file.write(boardCopy);
-        }
-    }
+        }    }
 
-    public void loadFile(String title) {
+    public void loadFile(String title) throws IOException {
         JFrame parentFrame = new JFrame();
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle(title);
@@ -106,7 +106,7 @@ public class Controller {
 
         if (userSelection == JFileChooser.APPROVE_OPTION) {
             File fileToOpen = fileChooser.getSelectedFile();
-            SudokuBoardDaoFactory dao = new SudokuBoardDaoFactory();
+            DaoFactory dao = new DaoFactory();
             Dao<SudokuBoard> file;
             file = dao.getFileDao(fileToOpen.getAbsolutePath());
             sudokuBoardFromFile = file.read();
