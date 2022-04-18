@@ -2,8 +2,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>pl.comp</groupId>
-    <artifactId>SudokuGameProject</artifactId>
+    <groupId>crypto</groupId>
+    <artifactId>CryptographyDES</artifactId>
     <version>2.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
@@ -18,9 +18,9 @@
     <url>http://maven.apache.org</url>
     <developers>
         <developer>
-            <id>229065</id>
-            <name>Adam Szkup</name>
-            <email>229065@edu.p.lodz.pl</email>
+            <id>236630</id>
+            <name>Mateusz Przybył</name>
+            <email>236630@edu.p.lodz.pl</email>
         </developer>
         <developer>
             <id>236659</id>
@@ -29,7 +29,7 @@
         </developer>
     </developers>
 
-    <description>Projekt grupy laboratoryjnej mb_cz_0815_03</description>
+    <description>Projekt na Podstawy Kryptografii - Zestaw 1 Algorytm DES</description>
 
     <licenses>
         <license>

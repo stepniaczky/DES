@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="500.0" maxWidth="550.0" minHeight="500.0" minWidth="550" prefHeight="500.0" prefWidth="550" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.first.firstjava.Controller">
+<Pane maxHeight="500.0" maxWidth="550.0" minHeight="500.0" minWidth="550" prefHeight="500.0" prefWidth="550" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="des.Controller">
     <!-- KEY SECTION -->
     <Label layoutX="150.0" layoutY="10.0" text="KLUCZ">
         <font>
@@ -119,12 +119,12 @@
           <Font size="10.0" />
         </font>
     </Button>
-    <RadioButton layoutX="240.0" layoutY="350.0" mnemonicParsing="false" text="Plik">
+    <RadioButton fx:id="fileRadioButton" layoutX="240.0" layoutY="350.0" onAction="#onActionFileRadioButton" mnemonicParsing="false" text="Plik">
         <font>
           <Font size="10.0" />
         </font>
     </RadioButton>
-    <RadioButton layoutX="240.0" layoutY="370.0" mnemonicParsing="false" text="Okno">
+    <RadioButton fx:id="windowRadioButton" layoutX="240.0" layoutY="370.0" onAction="#onActionWindowRadioButton" mnemonicParsing="false" selected="true" text="Okno">
         <font>
           <Font size="10.0" />
         </font>
