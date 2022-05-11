@@ -6,6 +6,7 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 import javax.swing.JFileChooser;
@@ -14,7 +15,6 @@ import javax.swing.JFrame;
 public class Controller {
 
     private String key;
-    private String keyFromFile;
 
     private String decrypted;
     private String decryptedFromFile;
@@ -29,29 +29,22 @@ public class Controller {
     @FXML
     private RadioButton windowRadioButton;
     @FXML
-    private TextField keyTextField = new TextField();
+    private TextArea keyTextArea;
     @FXML
-    private TextField encryptedTextField = new TextField();
+    private TextArea encryptedTextArea;
     @FXML
-    private TextField decryptedTextField = new TextField();
+    private TextArea decryptedTextArea;
 
 
     @FXML
     public void initialize() {
-
+        // zainicjalizowanie wartosci klucza i ustawienie go w TextFieldzie
     }
 
     public void generateKey() {
-        key = keyTextField.getText();
+        key = keyTextArea.getText();
         System.out.print(key);
-    }
-
-    public void loadKey() throws IOException {
-        keyFromFile = loadFile("Wczytaj klucz z pliku:");
-    }
-
-    public void saveKey() {
-        saveFile("Zapisz klucz do pliku:", key);
+        // NAPISANIE DO KLUCZA
     }
 
     public void openExplicitFile() throws IOException {
@@ -72,22 +65,35 @@ public class Controller {
 
     public void encrypt() {
         if (windowRadioButton.isSelected()) {
-            decrypted = decryptedTextField.getText();
+            decrypted = decryptedTextArea.getText();
             System.out.println("to do zaszyfrowania z okna");
             System.out.print(decrypted);
+
+            DES des = new DES(decrypted, key);
         } else {
             System.out.println("to do zaszyfrowania z pliku");
+
+            DES des = new DES(decryptedFromFile, key);
         }
+        encrypted = decrypted + " chuj";
+        encryptedTextArea.setText(encrypted);
     }
 
     public void decrypt() {
         if (windowRadioButton.isSelected()) {
-            encrypted = encryptedTextField.getText();
+            encrypted = encryptedTextArea.getText();
             System.out.println("to do odszyfrowania z okna");
             System.out.print(encrypted);
+
+            DES des = new DES(encrypted, key);
         } else {
             System.out.println("to do odszyfrowania z pliku");
+
+            DES des = new DES(encryptedFromFile, key);
         }
+
+        decrypted = encrypted + " chuj";
+        decryptedTextArea.setText(decrypted);
     }
 
     public void saveFile(String title, String obj) {

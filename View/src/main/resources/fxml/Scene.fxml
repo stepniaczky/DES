@@ -3,7 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
@@ -16,53 +16,28 @@
             <Font size="12.0" />
         </font>
     </Label>
-    <Label layoutX="10.0" layoutY="35.0" text="Wartość klucza heksadecymalnie:">
+    <Label layoutX="42.0" layoutY="35.0" text="Wartość klucza heksadecymalnie:">
         <font>
             <Font size="10.0" />
         </font>
     </Label>
-    <Label layoutX="180.0" layoutY="35.0" text="Wygeneruj wartość klucza:">
+    <Label layoutX="236.0" layoutY="35.0" text="Wygeneruj wartość klucza:">
         <font>
             <Font size="10.0" />
         </font>
     </Label>
-    <Button layoutX="180.0" layoutY="55.0" mnemonicParsing="false" onAction="#generateKey" prefHeight="20" prefWidth="120.0" text="Generuj klucz">
+    <Button layoutX="235.0" layoutY="55.0" mnemonicParsing="false" onAction="#generateKey" prefHeight="80.0" prefWidth="120.0" text="Generuj klucz">
         <font>
             <Font size="10.0" />
         </font>
     </Button>
 
     <!-- ENCRYPTION / DECRYPTION SECTION -->
-    <Label layoutX="76.0" layoutY="165.0" text="SZYFROWANIE / DESZYFROWANIE" />
-    <TextField fx:id="keyTextField" layoutX="10.0" layoutY="55.0" prefHeight="20.0" prefWidth="150.0">
-        <font>
-          <Font size="10.0" />
-        </font>
-    </TextField>
+    <Label layoutX="76.0" layoutY="151.0" text="SZYFROWANIE / DESZYFROWANIE" />
     <Line endX="258.0" endY="1.9073486328125E-6" layoutX="292.0" layoutY="19.0" startX="-100.33335876464844" startY="1.9073486328125E-6" />
     <Line endX="141.66664123535156" endY="1.9073486328125E-6" layoutY="19.0" startY="1.9073486328125E-6" />
-    <Text layoutX="15.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wczytaj klucz z pliku:">
-        <font>
-          <Font size="10.0" />
-        </font>
-    </Text>
-    <Button layoutX="112.0" layoutY="95.0" mnemonicParsing="false" onAction="#loadKey" text="Wczytaj">
-        <font>
-          <Font size="10.0" />
-        </font>
-    </Button>
-    <Text layoutX="180.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Zapisz klucz do pliku:">
-        <font>
-          <Font size="10.0" />
-        </font>
-    </Text>
-    <Button layoutX="278.0" layoutY="95.0" mnemonicParsing="false" onAction="#saveKey" text="Zapisz">
-        <font>
-          <Font size="10.0" />
-        </font>
-    </Button>
-    <Line endX="68.99999237060547" layoutY="174.0" />
-    <Line endX="231.0" layoutX="319.0" layoutY="174.0" startX="-52.666656494140625" />
+    <Line endX="68.99999237060547" layoutY="160.0" />
+    <Line endX="231.0" layoutX="319.0" layoutY="160.0" startX="-52.666656494140625" />
     <Text layoutX="15.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Otwórz plik zawierający tekst jawny:">
         <font>
           <Font size="10.0" />
@@ -83,16 +58,6 @@
           <Font size="10.0" />
         </font>
     </Button>
-    <TextField fx:id="decryptedTextField" layoutX="15.0" layoutY="225.0" prefHeight="198.0" prefWidth="208.0">
-        <font>
-          <Font size="10.0" />
-        </font>
-    </TextField>
-    <TextField fx:id="encryptedTextField" layoutX="328.0" layoutY="225.0" prefHeight="198.0" prefWidth="208.0">
-        <font>
-            <Font size="10.0" />
-        </font>
-    </TextField>
     <Text layoutX="15.0" layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Zapisz plik zawierający tekst jawny:">
         <font>
           <Font size="10.0" />
@@ -123,12 +88,12 @@
           <Font size="10.0" />
         </font>
     </Button>
-    <RadioButton fx:id="fileRadioButton" layoutX="240.0" layoutY="350.0" onAction="#onActionFileRadioButton" mnemonicParsing="false" text="Plik">
+    <RadioButton fx:id="fileRadioButton" layoutX="240.0" layoutY="350.0" mnemonicParsing="false" onAction="#onActionFileRadioButton" text="Plik">
         <font>
           <Font size="10.0" />
         </font>
     </RadioButton>
-    <RadioButton fx:id="windowRadioButton" layoutX="240.0" layoutY="370.0" onAction="#onActionWindowRadioButton" mnemonicParsing="false" selected="true" text="Okno">
+    <RadioButton fx:id="windowRadioButton" layoutX="240.0" layoutY="370.0" mnemonicParsing="false" onAction="#onActionWindowRadioButton" selected="true" text="Okno">
         <font>
           <Font size="10.0" />
         </font>
@@ -138,4 +103,7 @@
          <Font size="10.0" />
       </font>
    </Button>
+   <TextArea fx:id="keyTextArea" layoutX="10.0" layoutY="55.0" prefHeight="80.0" prefWidth="208.0" wrapText="true" />
+   <TextArea fx:id="decryptedTextArea" layoutX="15.0" layoutY="225.0" prefHeight="198.0" prefWidth="208.0" wrapText="true" />
+   <TextArea fx:id="encryptedTextArea" layoutX="328.0" layoutY="225.0" prefHeight="198.0" prefWidth="208.0" wrapText="true" />
 </Pane>
