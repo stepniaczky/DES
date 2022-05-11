@@ -3,7 +3,7 @@ package des;
 import java.io.*;
 
 
-public class FileDao implements Dao<SudokuBoard> {
+public class FileDao implements Dao<String> {
 
     private final String filename;
 
@@ -12,11 +12,11 @@ public class FileDao implements Dao<SudokuBoard> {
     }
 
     @Override
-    public SudokuBoard read() throws IOException {
-        SudokuBoard obj;
+    public String read() throws IOException {
+        String obj;
         try (FileInputStream fis = new FileInputStream(filename);
              ObjectInputStream ois = new ObjectInputStream(fis)) {
-             obj = (SudokuBoard) ois.readObject();
+             obj = (String) ois.readObject();
         } catch (ClassNotFoundException | FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -24,7 +24,7 @@ public class FileDao implements Dao<SudokuBoard> {
     }
 
     @Override
-    public void write(SudokuBoard obj) {
+    public void write(String obj) {
         try (FileOutputStream fos = new FileOutputStream(filename);
              ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             oos.writeObject(obj);

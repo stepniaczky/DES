@@ -10,32 +10,31 @@ public class FileDaoTest {
     @Test
     public void overallTest() throws IOException {
         DaoFactory dao = new DaoFactory();
-        SudokuBoard b1 = new SudokuBoard(9);
-        SudokuBoard b2;
-        Dao<SudokuBoard> file;
+        String s1 = "test";
+        String s2;
+        Dao<String> file;
 
         file = dao.getFileDao("whatever.txt");
-        file.write(b1);
-        b2 = file.read();
-        assertEquals(b1.getBoard(), b2.getBoard());
+        file.write(s1);
+        s2 = file.read();
+        assertEquals(s1, s2);
     }
 
     @Test
     public void readException() throws IOException {
         int nmbr = 9;
         DaoFactory dao = new DaoFactory();
-        Dao<SudokuBoard> file;
+        Dao<String> file;
         file = dao.getFileDao("whatever.txt");
         file.read();
     }
 
     @Test
     public void writeException() throws RuntimeException {
-        int nmbr = 9;
         DaoFactory dao = new DaoFactory();
-        SudokuBoard b1 = new SudokuBoard(nmbr);
-        Dao<SudokuBoard> file;
+        String s1 = "test";
+        Dao<String> file;
         file = dao.getFileDao("whatever.txt");
-        file.write(b1);
+        file.write(s1);
     }
 }

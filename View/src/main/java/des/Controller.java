@@ -6,19 +6,34 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
 public class Controller {
 
-    private static SudokuBoard sudokuBoardFromFile;
+    private String key;
+    private String keyFromFile;
+
+    private String decrypted;
+    private String decryptedFromFile;
+
+    private String encrypted;
+    private String encryptedFromFile;
+
     private final PopoutWindow popoutWindow = new PopoutWindow();
 
     @FXML
     private RadioButton fileRadioButton;
     @FXML
     private RadioButton windowRadioButton;
+    @FXML
+    private TextField keyTextField = new TextField();
+    @FXML
+    private TextField encryptedTextField = new TextField();
+    @FXML
+    private TextField decryptedTextField = new TextField();
 
 
     @FXML
@@ -26,54 +41,56 @@ public class Controller {
 
     }
 
-    public static SudokuBoard getSudokuBoardFromFile() {
-        return sudokuBoardFromFile;
+    public void generateKey() {
+        key = keyTextField.getText();
+        System.out.print(key);
     }
 
-    public void generateKey () {
-
+    public void loadKey() throws IOException {
+        keyFromFile = loadFile("Wczytaj klucz z pliku:");
     }
 
-    public void loadKey () throws IOException {
-        loadFile("Wczytaj klucz z pliku:");
+    public void saveKey() {
+        saveFile("Zapisz klucz do pliku:", key);
     }
 
-    public void saveKey () {
-        saveFile("Zapisz klucz do pliku:");
-    }
-    public void openExplicitFile () throws IOException {
-        loadFile("Otwórz plik zawierający tekst jawny:");
+    public void openExplicitFile() throws IOException {
+        decryptedFromFile = loadFile("Otwórz plik zawierający tekst jawny:");
     }
 
-    public void openEncryptedFile () throws IOException {
-        loadFile("Otwórz plik zawierający szyfrogram:");
+    public void openEncryptedFile() throws IOException {
+        encryptedFromFile = loadFile("Otwórz plik zawierający szyfrogram:");
     }
 
-    public void saveExplicitFile () {
-        saveFile("Zapisz plik zawierający tekst jawny:");
+    public void saveExplicitFile() {
+        saveFile("Zapisz plik zawierający tekst jawny:", decrypted);
     }
 
-    public void saveEncryptedFile () {
-        saveFile("Zapisz plik zawierający szyfrogram:");
+    public void saveEncryptedFile() {
+        saveFile("Zapisz plik zawierający szyfrogram:", encrypted);
     }
 
-    public void encrypt () {
-//        if (windowRadioButton.isSelected()) {
-//
-//        } else {
-//
-//        }
+    public void encrypt() {
+        if (windowRadioButton.isSelected()) {
+            decrypted = decryptedTextField.getText();
+            System.out.println("to do zaszyfrowania z okna");
+            System.out.print(decrypted);
+        } else {
+            System.out.println("to do zaszyfrowania z pliku");
+        }
     }
 
-    public void decrypt () {
-//        if (windowRadioButton.isSelected()) {
-//
-//        } else {
-//
-//        }
+    public void decrypt() {
+        if (windowRadioButton.isSelected()) {
+            encrypted = encryptedTextField.getText();
+            System.out.println("to do odszyfrowania z okna");
+            System.out.print(encrypted);
+        } else {
+            System.out.println("to do odszyfrowania z pliku");
+        }
     }
 
-    public void saveFile (String title) {
+    public void saveFile(String title, String obj) {
         JFrame parentFrame = new JFrame();
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle(title);
@@ -88,12 +105,13 @@ public class Controller {
         if (userSelection == JFileChooser.APPROVE_OPTION) {
             File fileToSave = fileChooser.getSelectedFile();
             DaoFactory dao = new DaoFactory();
-            Dao<SudokuBoard> file;
+            Dao<String> file;
             file = dao.getFileDao(fileToSave.getAbsolutePath());
-//                file.write(boardCopy);
-        }    }
+            file.write(obj);
+        }
+    }
 
-    public void loadFile(String title) throws IOException {
+    public String loadFile(String title) throws IOException {
         JFrame parentFrame = new JFrame();
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle(title);
@@ -107,10 +125,12 @@ public class Controller {
         if (userSelection == JFileChooser.APPROVE_OPTION) {
             File fileToOpen = fileChooser.getSelectedFile();
             DaoFactory dao = new DaoFactory();
-            Dao<SudokuBoard> file;
+            Dao<String> file;
             file = dao.getFileDao(fileToOpen.getAbsolutePath());
-            sudokuBoardFromFile = file.read();
+            return file.read();
         }
+
+        return null;
     }
 
     public void showAuthors() {
@@ -121,12 +141,11 @@ public class Controller {
                 pom, Alert.AlertType.INFORMATION);
     }
 
-    public void onActionFileRadioButton () {
+    public void onActionFileRadioButton() {
         windowRadioButton.setSelected(false);
-    }       // mozna usunac radio buttony i po prostu automatycznie zawartosc plikow wstawiac
-            // do input fieldow ewentualnie nadpisywac ponownym zapisem do pliku
+    }
 
-    public void onActionWindowRadioButton () {
+    public void onActionWindowRadioButton() {
         fileRadioButton.setSelected(false);
     }
 

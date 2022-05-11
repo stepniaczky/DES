@@ -34,7 +34,7 @@
 
     <!-- ENCRYPTION / DECRYPTION SECTION -->
     <Label layoutX="76.0" layoutY="165.0" text="SZYFROWANIE / DESZYFROWANIE" />
-    <TextField layoutX="10.0" layoutY="55.0" prefHeight="20.0" prefWidth="150.0">
+    <TextField fx:id="keyTextField" layoutX="10.0" layoutY="55.0" prefHeight="20.0" prefWidth="150.0">
         <font>
           <Font size="10.0" />
         </font>
@@ -83,12 +83,16 @@
           <Font size="10.0" />
         </font>
     </Button>
-    <TextField layoutX="15.0" layoutY="225.0" prefHeight="198.0" prefWidth="208.0">
+    <TextField fx:id="decryptedTextField" layoutX="15.0" layoutY="225.0" prefHeight="198.0" prefWidth="208.0">
         <font>
           <Font size="10.0" />
         </font>
     </TextField>
-    <TextField layoutX="328.0" layoutY="225.0" prefHeight="198.0" prefWidth="208.0" />
+    <TextField fx:id="encryptedTextField" layoutX="328.0" layoutY="225.0" prefHeight="198.0" prefWidth="208.0">
+        <font>
+            <Font size="10.0" />
+        </font>
+    </TextField>
     <Text layoutX="15.0" layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Zapisz plik zawierający tekst jawny:">
         <font>
           <Font size="10.0" />

@@ -1,7 +1,7 @@
 package des;
 
 public class DaoFactory {
-    public Dao<SudokuBoard> getFileDao(String filename) {
+    public Dao<String> getFileDao(String filename) {
         return new FileDao(filename);
     }
 }

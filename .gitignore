@@ -1,6 +1,5 @@
 target
 .idea
-SudokuGameProject.iml
 Model/ModelProject.iml
 View/ViewProject.iml
 logs
