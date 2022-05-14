@@ -12,7 +12,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         String filePath = "/fxml/Scene.fxml";
-        String appTitle = "Base64";
+        String appTitle = "DES";
         Object scene = new FXMLLoader(App.class.getResource(filePath)).load();
         stage.setScene(new Scene((Parent) scene));
         stage.setTitle(appTitle);

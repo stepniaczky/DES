@@ -2,13 +2,11 @@ package des;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import org.apache.commons.codec.DecoderException;
 
 import javax.swing.JFileChooser;
@@ -16,7 +14,7 @@ import javax.swing.JFrame;
 
 public class Controller {
 
-    private String key = "0E329232EA6D0D73";;
+    private String key = "0E329232EA6D0D73";
 
     private String decrypted;
     private String encrypted;
@@ -41,17 +39,23 @@ public class Controller {
     }
 
     public void openExplicitFile() throws IOException {
-        decrypted = loadFile("Otwórz plik zawierający tekst jawny:");
+        String s = loadFile("Otwórz plik zawierający tekst jawny:");
+        if (!Objects.equals(s, null))
+            decrypted = s;
         decryptedTextArea.setText(decrypted);
     }
 
     public void openEncryptedFile() throws IOException {
-        encrypted = loadFile("Otwórz plik zawierający szyfrogram:");
+        String s = loadFile("Otwórz plik zawierający szyfrogram:");
+        if (!Objects.equals(s, null))
+            encrypted = s;
         encryptedTextArea.setText(encrypted);
     }
 
     public void openKey() throws IOException {
-        key = loadFile("Otwórz plik zawierający klucz:");
+        String s = loadFile("Otwórz plik zawierający klucz:");
+        if (!Objects.equals(s, null))
+            key = s;
         keyTextArea.setText(key);
     }
 
@@ -121,6 +125,12 @@ public class Controller {
             DaoFactory dao = new DaoFactory();
             Dao<String> file;
             file = dao.getFileDao(fileToOpen.getAbsolutePath());
+
+            String s = file.read();
+            if (Objects.equals(s, null)) {
+                popoutWindow.messageBox("Error",
+                        "File does not exist!", Alert.AlertType.WARNING);
+            }
             return file.read();
         }
 
