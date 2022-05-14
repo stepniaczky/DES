@@ -1,36 +1,19 @@
 package des;
 
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-
 public class Conversions {
 
-    private static final byte[] HEX_ARRAY = "0123456789ABCDEF".getBytes(StandardCharsets.US_ASCII);
-
+    // Converts an Array of bytes to hex String
+    // Checks if every hex value has length of 2
+    // If not this element gets an extra 0xFF
     public static String byteArrayToHex(byte[] bytes) {
-        byte[] hexChars = new byte[bytes.length * 2];
-        for (int j = 0; j < bytes.length; j++) {
-            int v = bytes[j] & 0xFF;
-            hexChars[j * 2] = HEX_ARRAY[v >>> 4];
-            hexChars[j * 2 + 1] = HEX_ARRAY[v & 0x0F];
-        }
-        return new String(hexChars, StandardCharsets.UTF_8).toLowerCase();
+        StringBuilder sb = new StringBuilder(bytes.length * 2);
+        for (byte b : bytes)
+            sb.append(String.format("%02x", b));
+        return sb.toString();
     }
 
-    public static byte[] hexStringToByteArray(String s) {
-        if (s.length() % 2 != 0) {
-            System.out.println("error: hexstringtobytearray");
-        }
-        s = s.toUpperCase();
-        int len = s.length();
-        byte[] data = new byte[len / 2];
-        for (int i = 0; i < len; i += 2) {
-            data[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4)
-                    + Character.digit(s.charAt(i+1), 16));
-        }
-        return data;
-    }
-
+    // Converts 1 byte to String form with complement to a given number <n>
+    // e.g. nr = 8: (byte) 10 => (String) "00001010"
     public static String ByteToBin(byte oneByte, int nr) {
         StringBuilder s = new StringBuilder(String.format("%s", Integer.toBinaryString(oneByte & 0xFF)));
         int length = nr - s.length();
@@ -40,33 +23,26 @@ public class Conversions {
         return s.toString();
     }
 
+    // Converts 1 String of byte value to int array of binary values, e.g "10101010" => int[8]
     public static int[] BinStringToIntArr(String b) {
         int[] result = new int[b.length()];
-        for(int i = 0; i < b.length(); i++) {
+        for (int i = 0; i < b.length(); i++) {
             result[i] = Integer.parseInt(b.split("")[i]);
         }
 
         return result;
     }
 
+    // Converts byte array to int array of binary values, e.g. byte[8] => int[64]
     public static int[] ByteArrToIntArr(byte[] input) {
         int[] result = new int[input.length * 8];
-        for(int i = 0; i < input.length; i++) {
+        for (int i = 0; i < input.length; i++) {
             String[] b = ByteToBin(input[i], 8).split("");
-            for(int j = 0; j < 8; j++){
+            for (int j = 0; j < 8; j++) {
                 result[(8 * i) + j] = Integer.parseInt(b[j]);
             }
         }
         return result;
     }
-
-    public static String setBitAt (String oneByte, int index, char value) {
-        StringBuilder result = new StringBuilder(oneByte);
-        result.setCharAt(7 - index, value);
-        return result.toString();
-    }
-
-
-
 }
 
