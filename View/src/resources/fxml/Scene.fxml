@@ -10,99 +10,94 @@
 
 <Pane maxHeight="500.0" maxWidth="550.0" minHeight="500.0" minWidth="550" prefHeight="500.0" prefWidth="550" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="des.Controller">
     <!-- KEY SECTION -->
-    <Label layoutX="150.0" layoutY="10.0" text="KLUCZ">
+    <Label layoutX="150.0" layoutY="10.0" text="KEY">
         <font>
             <Font size="12.0" />
         </font>
     </Label>
-    <Label layoutX="42.0" layoutY="35.0" text="Wartość klucza heksadecymalnie:">
+    <Label layoutX="15.0" layoutY="35.0" text="Hexadecimal key value:">
         <font>
             <Font size="10.0" />
         </font>
     </Label>
-    <Label layoutX="236.0" layoutY="35.0" text="Wygeneruj wartość klucza:">
-        <font>
-            <Font size="10.0" />
-        </font>
-    </Label>
-    <Button layoutX="235.0" layoutY="55.0" mnemonicParsing="false" onAction="#generateKey" prefHeight="74.0" prefWidth="120.0" text="Generuj klucz">
+    <Button layoutX="235.0" layoutY="55.0" mnemonicParsing="false" onAction="#generateKey" prefHeight="74.0" prefWidth="120.0" text="Generate key">
         <font>
             <Font size="10.0" />
         </font>
     </Button>
 
     <!-- ENCRYPTION / DECRYPTION SECTION -->
-    <Label layoutX="76.0" layoutY="180.0" text="SZYFROWANIE / DESZYFROWANIE" />
-    <Line endX="258.0" endY="1.9073486328125E-6" layoutX="292.0" layoutY="19.0" startX="-100.33335876464844" startY="1.9073486328125E-6" />
+    <Label layoutX="90.0" layoutY="180.0" text="ENCRYPTING / DECRYPTING" />
+    <Line endX="258.0" endY="1.9073486328125E-6" layoutX="292.0" layoutY="19.0" startX="-110.33335876464844" startY="1.9073486328125E-6" />
     <Line endX="141.66664123535156" endY="1.9073486328125E-6" layoutY="19.0" startY="1.9073486328125E-6" />
-    <Line endX="68.99999237060547" layoutY="189.0" />
-    <Line endX="231.0" layoutX="319.0" layoutY="189.0" startX="-52.666656494140625" />
-    <Text layoutX="15.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Otwórz plik zawierający tekst jawny:">
+    <Line endX="80.0" layoutY="189.0" />
+    <Line endX="231.0" layoutX="319.0" layoutY="189.0" startX="-70.0" />
+    <Text layoutX="15.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Load decrypted text from file:">
         <font>
           <Font size="10.0" />
         </font>
     </Text>
-    <Button layoutX="177.0" layoutY="215.0" mnemonicParsing="false" onAction="#openExplicitFile" text="Otwórz">
+    <Button layoutX="155.0" layoutY="220.0" mnemonicParsing="false" onAction="#openExplicitFile" text="Open">
         <font>
           <Font size="10.0" />
         </font>
     </Button>
-    <Text layoutX="329.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Otwórz plik zawierający szyfrogram:">
+    <Text layoutX="329.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Load ciphertext from file:">
         <font>
           <Font size="10.0" />
         </font>
     </Text>
-    <Button layoutX="490.0" layoutY="215.0" mnemonicParsing="false" onAction="#openEncryptedFile" text="Otwórz">
+    <Button layoutX="445.0" layoutY="220.0" mnemonicParsing="false" onAction="#openEncryptedFile" text="Open">
         <font>
           <Font size="10.0" />
         </font>
     </Button>
-    <Text layoutX="15.0" layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Zapisz plik zawierający tekst jawny:">
+    <Text layoutX="15.0" layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Save the decrypted text to a file:">
         <font>
           <Font size="10.0" />
         </font>
     </Text>
-    <Text layoutX="328.0" layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Zapisz plik zawierający szyfrogram:">
+    <Text layoutX="328.0" layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Save the ciphertext to a file:">
         <font>
           <Font size="10.0" />
         </font>
     </Text>
-    <Button layoutX="174.0" layoutY="446.0" mnemonicParsing="false" onAction="#saveExplicitFile" prefHeight="22.0" prefWidth="48.0" text="Zapisz">
+    <Button layoutX="165.0" layoutY="446.0" mnemonicParsing="false" onAction="#saveExplicitFile" prefHeight="22.0" prefWidth="48.0" text="Save">
         <font>
           <Font size="10.0" />
         </font>
     </Button>
-    <Button layoutX="487.0" layoutY="446.0" mnemonicParsing="false" onAction="#saveEncryptedFile" prefHeight="22.0" prefWidth="48.0" text="Zapisz">
+    <Button layoutX="455.0" layoutY="446.0" mnemonicParsing="false" onAction="#saveEncryptedFile" prefHeight="22.0" prefWidth="48.0" text="Save">
         <font>
           <Font size="10.0" />
         </font>
     </Button>
-    <Button layoutX="235.0" layoutY="317.0" mnemonicParsing="false" onAction="#encrypt" prefHeight="22.0" prefWidth="83.0" text="Szyfruj  -&gt;">
+    <Button layoutX="235.0" layoutY="317.0" mnemonicParsing="false" onAction="#encrypt" prefHeight="22.0" prefWidth="83.0" text="Encrypt  -&gt;">
         <font>
           <Font size="10.0" />
         </font>
     </Button>
-    <Button layoutX="235.0" layoutY="348.0" mnemonicParsing="false" onAction="#decrypt" prefHeight="22.0" prefWidth="83.0" text="&lt;-  Deszyfruj">
+    <Button layoutX="235.0" layoutY="348.0" mnemonicParsing="false" onAction="#decrypt" prefHeight="22.0" prefWidth="83.0" text="&lt;-  Decrypt">
         <font>
           <Font size="10.0" />
         </font>
     </Button>
-   <Button layoutX="490.0" layoutY="30.0" mnemonicParsing="false" onAction="#showAuthors" text="Autorzy">
+   <Button layoutX="490.0" layoutY="30.0" mnemonicParsing="false" onAction="#showAuthors" text="Authors">
       <font>
          <Font size="10.0" />
       </font>
    </Button>
    <TextArea fx:id="keyTextArea" layoutX="10.0" layoutY="55.0" prefHeight="74.0" prefWidth="208.0" wrapText="true" />
-   <TextArea fx:id="decryptedTextArea" layoutX="15.0" layoutY="254.0" prefHeight="169.0" prefWidth="208.0" wrapText="true" />
-   <TextArea fx:id="encryptedTextArea" layoutX="328.0" layoutY="254.0" prefHeight="169.0" prefWidth="208.0" wrapText="true" />
-   <Button layoutX="115.0" layoutY="142.0" mnemonicParsing="false" onAction="#openKey" text="Otwórz" />
-   <Button layoutX="280.0" layoutY="142.0" mnemonicParsing="false" onAction="#saveKey" text="Zapisz" />
-   <Text layoutX="10.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Otwórz plik z kluczem:">
+   <TextArea fx:id="decryptedTextArea" layoutX="15.0" layoutY="254.0" prefHeight="183.0" prefWidth="208.0" wrapText="true" />
+   <TextArea fx:id="encryptedTextArea" layoutX="328.0" layoutY="254.0" prefHeight="183.0" prefWidth="208.0" wrapText="true" />
+   <Button layoutX="110.0" layoutY="142.0" mnemonicParsing="false" onAction="#openKey" text="Open" />
+   <Button layoutX="235.0" layoutY="142.0" mnemonicParsing="false" onAction="#saveKey" text="Save" />
+   <Text layoutX="15.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Load key from file:">
       <font>
          <Font size="10.0" />
       </font>
    </Text>
-   <Text layoutX="180.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Zapisz klucz do pliku:">
+   <Text layoutX="170.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Save the key:">
       <font>
          <Font size="10.0" />
       </font>

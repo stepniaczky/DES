@@ -141,7 +141,7 @@ public class Controller {
         String pom = "Mikołaj Stępniak 236659"
                 + System.lineSeparator()
                 + "Mateusz Przybył 236630";
-        popoutWindow.messageBox("Autorzy programu",
+        popoutWindow.messageBox("Authors",
                 pom, Alert.AlertType.INFORMATION);
     }
 
