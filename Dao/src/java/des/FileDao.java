@@ -35,6 +35,6 @@ public class FileDao implements Dao<String> {
     }
 
     @Override
-    public void close() throws Exception {
+    public void close() {
     }
 }
