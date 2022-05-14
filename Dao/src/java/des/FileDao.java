@@ -19,7 +19,7 @@ public class FileDao implements Dao<String> {
             while ((i = fileReader.read()) != -1)
                 obj.append((char) i);
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            return null;
         }
         return obj.toString();
     }
