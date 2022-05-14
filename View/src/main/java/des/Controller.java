@@ -2,32 +2,27 @@ package des;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import org.apache.commons.codec.DecoderException;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
 public class Controller {
 
-    private String key;
+    private String key = "0E329232EA6D0D73";;
 
     private String decrypted;
-    private String decryptedFromFile;
-
     private String encrypted;
-    private String encryptedFromFile;
 
     private final PopoutWindow popoutWindow = new PopoutWindow();
 
-    @FXML
-    private RadioButton fileRadioButton;
-    @FXML
-    private RadioButton windowRadioButton;
     @FXML
     private TextArea keyTextArea;
     @FXML
@@ -38,61 +33,54 @@ public class Controller {
 
     @FXML
     public void initialize() {
-        // zainicjalizowanie wartosci klucza i ustawienie go w TextFieldzie
+        keyTextArea.setText(key);
     }
 
     public void generateKey() {
         key = keyTextArea.getText();
-        System.out.print(key);
-        // NAPISANIE DO KLUCZA
     }
 
     public void openExplicitFile() throws IOException {
-        decryptedFromFile = loadFile("Otwórz plik zawierający tekst jawny:");
+        decrypted = loadFile("Otwórz plik zawierający tekst jawny:");
+        decryptedTextArea.setText(decrypted);
     }
 
     public void openEncryptedFile() throws IOException {
-        encryptedFromFile = loadFile("Otwórz plik zawierający szyfrogram:");
+        encrypted = loadFile("Otwórz plik zawierający szyfrogram:");
+        encryptedTextArea.setText(encrypted);
+    }
+
+    public void openKey() throws IOException {
+        key = loadFile("Otwórz plik zawierający klucz:");
+        keyTextArea.setText(key);
     }
 
     public void saveExplicitFile() {
+        decrypted = decryptedTextArea.getText();
         saveFile("Zapisz plik zawierający tekst jawny:", decrypted);
     }
 
     public void saveEncryptedFile() {
+        encrypted = encryptedTextArea.getText();
         saveFile("Zapisz plik zawierający szyfrogram:", encrypted);
     }
 
-    public void encrypt() {
-        if (windowRadioButton.isSelected()) {
-            decrypted = decryptedTextArea.getText();
-            System.out.println("to do zaszyfrowania z okna");
-            System.out.print(decrypted);
+    public void saveKey() {
+        key = keyTextArea.getText();
+        saveFile("Zapisz plik zawierający klucz:", key);
+    }
 
-            DES des = new DES(decrypted, key);
-        } else {
-            System.out.println("to do zaszyfrowania z pliku");
-
-            DES des = new DES(decryptedFromFile, key);
-        }
-        encrypted = decrypted + " chuj";
+    public void encrypt() throws DecoderException {
+        decrypted = decryptedTextArea.getText();
+        DES des = new DES(decrypted, key, false);
+        encrypted = des.encrypt();
         encryptedTextArea.setText(encrypted);
     }
 
-    public void decrypt() {
-        if (windowRadioButton.isSelected()) {
-            encrypted = encryptedTextArea.getText();
-            System.out.println("to do odszyfrowania z okna");
-            System.out.print(encrypted);
-
-            DES des = new DES(encrypted, key);
-        } else {
-            System.out.println("to do odszyfrowania z pliku");
-
-            DES des = new DES(encryptedFromFile, key);
-        }
-
-        decrypted = encrypted + " chuj";
+    public void decrypt() throws DecoderException {
+        encrypted = encryptedTextArea.getText();
+        DES des = new DES(encrypted, key, true);
+        decrypted = des.encrypt();
         decryptedTextArea.setText(decrypted);
     }
 
@@ -145,14 +133,6 @@ public class Controller {
                 + "Mateusz Przybył 236630";
         popoutWindow.messageBox("Autorzy programu",
                 pom, Alert.AlertType.INFORMATION);
-    }
-
-    public void onActionFileRadioButton() {
-        windowRadioButton.setSelected(false);
-    }
-
-    public void onActionWindowRadioButton() {
-        fileRadioButton.setSelected(false);
     }
 
 }

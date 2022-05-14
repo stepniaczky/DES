@@ -13,21 +13,22 @@ public class FileDao implements Dao<String> {
 
     @Override
     public String read() throws IOException {
-        String obj;
-        try (FileInputStream fis = new FileInputStream(filename);
-             ObjectInputStream ois = new ObjectInputStream(fis)) {
-             obj = (String) ois.readObject();
-        } catch (ClassNotFoundException | FileNotFoundException e) {
+        StringBuilder obj = new StringBuilder();
+        try (FileReader fileReader = new FileReader(filename);) {
+            int i;
+            while ((i = fileReader.read()) != -1)
+                obj.append((char) i);
+        } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-        return obj;
+        return obj.toString();
     }
 
     @Override
     public void write(String obj) {
-        try (FileOutputStream fos = new FileOutputStream(filename);
-             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
-            oos.writeObject(obj);
+        try (FileWriter fileWriter = new FileWriter(filename);
+             PrintWriter printWriter = new PrintWriter(fileWriter)) {
+             printWriter.print(obj);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
