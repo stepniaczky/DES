@@ -1,1 +1,1 @@
-# Implementation of the DES algorithm with the appropriate GUI application for the Cryptography course at TUL
+# Implementation of the DES algorithm with the appropriate GUI application for the cryptography course at Lodz University of Technology
