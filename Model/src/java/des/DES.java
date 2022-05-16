@@ -94,7 +94,7 @@ public class DES {
         }
 
         // Binary key value in Array representation of int values
-        byte[] byteKey = key.getBytes(StandardCharsets.UTF_8);
+        byte[] byteKey = HexFormat.of().parseHex(key);
         int[] binKey = ByteArrToIntArr(byteKey);
 
         // Encrypting / Decrypting process on each 64-bits block

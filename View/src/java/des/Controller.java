@@ -7,7 +7,6 @@ import java.util.Objects;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
-import org.apache.commons.codec.DecoderException;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -35,7 +34,14 @@ public class Controller {
     }
 
     public void generateKey() {
-        key = keyTextArea.getText();
+        String s = keyTextArea.getText();
+        if (s.length() == 16 && s.matches("[0-9A-F]+")) {
+            key = s;
+        } else if (s.length() != 16) {
+            popoutWindow.messageBox("Error", "The key length must equals 16!", Alert.AlertType.WARNING);
+        } else {
+            popoutWindow.messageBox("Error", "The key must be in hexadecimal format!", Alert.AlertType.WARNING);
+        }
     }
 
     public void openExplicitFile() throws IOException {
@@ -74,14 +80,14 @@ public class Controller {
         saveFile("Zapisz plik zawierający klucz:", key);
     }
 
-    public void encrypt() throws DecoderException {
+    public void encrypt() {
         decrypted = decryptedTextArea.getText();
         DES des = new DES(decrypted, key, false);
         encrypted = des.encrypt();
         encryptedTextArea.setText(encrypted);
     }
 
-    public void decrypt() throws DecoderException {
+    public void decrypt() {
         encrypted = encryptedTextArea.getText();
         DES des = new DES(encrypted, key, true);
         decrypted = des.encrypt();
